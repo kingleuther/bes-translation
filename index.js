@@ -2,6 +2,7 @@
 *translator service
 *Please take note of the following 
 *file structure to be able to use correctly
+*
 */
 
 var env = require('node-env-file');
