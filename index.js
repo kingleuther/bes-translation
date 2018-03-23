@@ -10,7 +10,7 @@ var appPath = root.dirname(require.main.filename);
 env(appPath + '/.env');
 
 function translator(obj, key) {
-    var locale = process.env.APP_LANGUAGE || 'en';
+    var locale = process.env.APP_LOCALE || 'en';
     //convert obj to array 
     var args = obj.split('.');
     //get the set of objects based on the passed obj
