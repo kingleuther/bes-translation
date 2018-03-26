@@ -11,7 +11,7 @@ var appPath = root.dirname(require.main.filename);
 env(appPath + '/.env');
 
 function translator(obj, key) {
-    if (!typeof obj === 'string') {
+    if (!typeof obj !=  'string') {
         return 'First parameter should be string';
     }
     var locale = process.env.APP_LOCALE || 'en';
@@ -28,7 +28,7 @@ function translator(obj, key) {
     }
     //check if key/there is a value to be replaced exist
     if (key) {
-        if (!typeof key === 'object') {
+        if (!typeof key != 'object') {
             return 'Your search param should be an object';
         }
         var numberOfKeys = Object.keys(key).length;
