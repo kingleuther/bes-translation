@@ -1,7 +1,7 @@
 {
   "name": "bes-translation",
-  "version": "1.0.3",
-  "description": "translation for bes-framework",
+  "version": "1.1.0",
+  "description": "Updates, breakdown of methods and checking. Implementation was also revised. please see readme file",
   "main": "index.js",
   "dependencies": {
     "node-env-file": "^0.1.8",
