@@ -1,6 +1,6 @@
 {
   "name": "bes-translation",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Updates, breakdown of methods and checking. Implementation was also revised. please see readme file",
   "main": "index.js",
   "dependencies": {
