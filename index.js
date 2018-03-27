@@ -22,7 +22,7 @@ function get(translation, key) {
 }
 
 function path(translation, key) {
-    if (typeof translation !=  'string') {
+    if (!typeof translation !=  'string') {
         return 'First parameter should be string';
     }
     var locale = process.env.APP_LANGUAGE || 'en';
@@ -43,7 +43,7 @@ function path(translation, key) {
 
 function conversion(object, key) {
     if (key) {
-        if (typeof key != 'object') {
+        if (!typeof key != 'object') {
             return 'Your search param should be an object';
         }
         var numberOfKeys = Object.keys(key).length;
