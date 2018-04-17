@@ -1,13 +1,23 @@
-/*
-*translator service
-*Please take note of the following 
-*file structure to be able to use correctly
+/**
+* Translator Service
+* Please take note of the following
+* File structure to be able to use correctly
 */
 
-var env = require('node-env-file');
-var root = require('path');
-var appPath = root.dirname(require.main.filename);
-env(appPath + '/.env');
+var fs = require('fs');
+var rootPath = require('path');
+var nodeEnv = require('node-env-file');
+var appPath = rootPath.resolve(__dirname);
+
+// Load .env in the root directory of this project
+global.env = nodeEnv(appPath + '/.env');
+
+// Get config from your locale or default config in bes-translation
+var locale = fs.existsSync(appPath + '/config/locale.js') ? require(appPath + '/config/locale').default : {};
+var opts = require('./config/locale');
+
+if (locale.default) opts.default = locale.default;
+if (locale.path) opts.path = locale.path;
 
 function Translator() {
     if (!(this instanceof Translator)) return new Translator();
@@ -15,9 +25,15 @@ function Translator() {
 
 Translator.prototype = {
     get,
+    trans
 }
 
+// TODO: To be deleted in the future
 function get(translation, key) {
+    return path(translation, key);
+}
+
+function trans(translation, key) {
     return path(translation, key);
 }
 
@@ -25,12 +41,18 @@ function path(translation, key) {
     if (typeof translation !=  'string') {
         return 'First parameter should be string';
     }
-    var locale = process.env.APP_LANGUAGE || 'en';
-    //convert obj to array 
+
+    // BEFORE: var locale = process.env.APP_LANGUAGE || 'en';
+    // AFTER:
+    var defaultLocale = opts.default;
+
+    // convert obj to array
     var args = translation.split('.');
-    //get the set of objects based on the passed obj
-    var object = require(appPath + '/storage/lang/' + locale + '/' + args[0]);
-    //get the actual path of the requested translation
+
+    // get the set of objects based on the passed obj
+    var object = require(appPath + opts.path + '/' + defaultLocale + '/' + args[0]);
+
+    // get the actual path of the requested translation
     var paths = args.slice(1);
 
     for (var i = 0; i < paths.length; i++) {
@@ -56,7 +78,7 @@ function conversion(object, key) {
         }
         return newcurr;
     }
-    return object  
+    return object
 }
 
-module.exports = Translator;
+module.exports = Translator();
