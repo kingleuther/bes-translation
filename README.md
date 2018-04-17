@@ -52,7 +52,7 @@ trans('filename.property', { key: 'value' });
 **ES6**
 
 ```js
-import { trans } from 'bes-translation
+import { trans } from 'bes-translation'
 
 trans('filename.property', { key: 'value' })
 ```
