@@ -1,32 +1,68 @@
-To Use
-{translationfolder} may be equal to 
-jp for japanese
-en for english 
-and others
+## Bes translation
 
-Create a folder 
-Storage -> lang -> jp/en/{translationfolder} -> translation js file
+*Translation helper for bes*
 
-example:
-Storage/lang/jp/content.js
+___
 
-content.js
+### Getting Started
 
+To use this package, run the command:
+
+```
+npm install bes-translation --save
+```
+
+### Usage
+
+```js
+trans(string, optional-object);
+```
+
+To use:
+
+Copy the example in `.env.example` then create a `.env` file and update your configuration for translation.
+
+Example:
+
+`resources/lang/en/content.js`
+
+The `LOCALE_PATH` is **resources/lang**<br />
+The `LOCALE` is **en**
+
+In your **content.js**
+
+```js
 module.exports = {
-    welcome:{
+    welcome: {
         text: Hello! :name
     }
 };
+```
 
-var trans = require('bes-translation');
-trans().get(string, optional-object)s;
-trans().get('filename.property',{key:'whatever you want to enter'});
+Using `trans`
 
-example:
-trans().get('content.welcome.text',{name: 'Leuther King Mojica'});
+**ES5**
 
----------------
-you also have to use .env file
-place the APP_LANGUAGE={translationfolder}
+```js
+var trans = require('bes-translation').trans;
 
-voila!
+trans('filename.property', { key: 'value' });
+```
+
+**ES6**
+
+```js
+import { trans } from 'bes-translation
+
+trans('filename.property', { key: 'value' })
+```
+
+Example:
+
+```js
+trans('content.welcome.text', { name: 'Leuther King Mojica' });
+```
+
+___
+
+### Voila!
