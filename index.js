@@ -7,7 +7,7 @@
 var fs = require('fs');
 var rootPath = require('path');
 var nodeEnv = require('node-env-file');
-var appPath = rootPath.resolve(__dirname);
+var appPath = rootPath.dirname(require.main.filename);
 
 // Load .env in the root directory of this project
 global.env = nodeEnv(appPath + '/.env');
